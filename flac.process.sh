@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sudo cp ~/script/flac/flac.process.sh /usr/local/bin/flac.process && sudo chmod o+x /usr/local/bin/flac.process
+#sudo cp flac.process.sh /usr/local/bin/flac.process && sudo chmod o+x /usr/local/bin/flac.process
 #apt-get install cuetools shntool
 
 
