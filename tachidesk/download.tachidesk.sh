@@ -14,9 +14,11 @@ FINISH=$3
 x=$START
 while [ $x -le $FINISH ]
 do
-  echo "downloading: curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x"
+  #echo "downloading: curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x"
+  status_code=$(curl --write-out %{http_code} --silent http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x)
+  echo "status_code: ${status_code}  == downloading: curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x"
+
   x=$(( $x + 1 ))
-  curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x
 done
 
 
