@@ -3,8 +3,10 @@
 # Mode Use
 
 ```
-sh download.tachidesk.sh ID-MANGA START FINISH
-sh download.tachidesk.sh 2 1 300
+bash download.tachidesk.sh -i 514
+bash download.tachidesk.sh -i 514 --start 1 --finish 10 -ip 192.168.0.10:4567
+
+
 ```
 
 ## sh terminal
