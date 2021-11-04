@@ -14,11 +14,22 @@ FINISH=$3
 x=$START
 i=1
 
+
 while [ $x -le $FINISH ]
 do
-  #echo "downloading: curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x"
-  status_code=$(curl --write-out %{http_code} --silent http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x)
-  echo "status_code: ${status_code}  == downloading: curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x"
+
+	downloaded=$(curl --silent http://192.168.0.10:4567/api/v1/manga/$ID/chapter/$x | jq '.downloaded')
+
+	if [ $downloaded == true ]; then
+		echo $(date +%Y-%m-%d_%H:%M:%S)"  curl --silent http://192.168.0.10:4567/api/v1/manga/$ID/chapter/$x	downloaded:  "$downloaded
+		x=$(( $x + 1 ))
+		continue
+	fi
+
+
+	#echo "downloading: curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x"
+	status_code=$(curl --write-out %{http_code} --silent http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x)
+	echo $(date +%Y-%m-%d_%H:%M:%S)"  status_code: ${status_code}  == downloading: curl http://192.168.0.10:4567/api/v1/download/$ID/chapter/$x"
 
 	if [ $status_code == 404 ] ; then
 		i=$(( $i + 1 ))
@@ -27,7 +38,7 @@ do
 		fi
 	fi
 
-  x=$(( $x + 1 ))
+	x=$(( $x + 1 ))
 done
 
 
