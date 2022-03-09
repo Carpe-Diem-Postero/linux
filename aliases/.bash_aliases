@@ -39,7 +39,8 @@ alias media='cd /mnt/user/media/media/'
 alias movies='cd /mnt/user/media/media/movies'
 alias series='cd /mnt/user/media/media/series'
 alias anime='cd /mnt/user/media/media/anime/anime'
-alias torrent='cd /mnt/user/download/torrent'
+alias download='cd /mnt/user/download/torrent'
+alias torrent='cd /mnt/user/media/torrent'
 
 
 alias lsd="ls -al | grep '^d'"
@@ -78,4 +79,13 @@ alias vault-restart='docker-compose -f /mnt/user/appdata/PVault/docker-compose.y
 
 alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm chenzj/dfimage"
 
-alias resync-50='rclone sync -P -vv --drive-server-side-across-configs --max-transfer 50G '
+alias resync-50='rclone sync -P -vv --drive-server-side-across-configs --max-transfer 50G --exclude "*.rar" '
+alias resync='rclone sync -P -vv --drive-server-side-across-configs --max-transfer 730G --exclude "*.rar" '
+alias resync-year='f(){ resync RO-Peliculas-LatTeam:All_Movies_megapeliculasrip_ORDENADAS/$1 Peliculas-TuPlex:jsavargas/All_Movies_megapeliculasrip_ORDENADAS/$1 --exclude "*.rar" };f'
+
+alias mount-peliculas='sh /mnt/user/jonathan/rclone/mount.Peliculas-TuPlex.sh'
+
+alias dstats='watch -n 20 docker stats --no-stream'
+
+alias gitname='git config --global user.email "@gmail.com" && git config --global user.name "jsavargas"'
+
